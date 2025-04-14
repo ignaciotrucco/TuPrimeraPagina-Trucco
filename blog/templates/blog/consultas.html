@@ -1,0 +1,40 @@
+{% extends 'home/base.html' %}
+
+{% block title %}
+Consultas
+{% endblock title %}
+
+{% block content_title %}
+Consultas
+{% endblock content_title %}
+
+{% block content %}
+
+<a class="btn btn-secondary mb-2" href='{% url 'blog:consultas_create' %}'">Nueva Consulta</a>
+
+<form method="get">
+    {% csrf_token %}
+    <input type="text" name="search" placeholder="Buscar por diagnostico" class="form-control mb-2"
+        value="{{ request.GET.search }}" type="submit">
+</form>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-light">
+        <tr>
+            <th>Diagnostico</th>
+            <th>Receta</th>
+            <th>Es Urgente</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for consulta in consultas %}
+        <tr>
+            <td>{{ consulta.diagnostico }}</td>
+            <td>{{ consulta.receta }}</td>
+            <td>{{ consulta.es_urgente }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends 'home/base.html' %}
+
+{% block title %}
+Inicio
+{% endblock title %}
+
+{% block content_title %}
+Bienvenidos a Sistema de Clínica Médica
+{% endblock content_title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="jumbotron text-center">
+        <p class="lead">Este sistema permite registrar pacientes, turnos, consultas médicas y medicamentos. También
+            podés buscar pacientes por nombre, turnos por especialidad, consultas por diagnostico y medicamentos por nombre, de manera rápida y sencilla.</p>
+        <hr class="my-4">
+        <p>Haz clic en los siguientes botones para navegar a cada sección.</p>
+            <a class="btn btn-secondary btn-lg m-1" href="{% url 'blog:pacientes' %}" role="button">Pacientes</a>
+            <a class="btn btn-secondary btn-lg m-1" href="{% url 'blog:turnos' %}" role="button">Turnos</a>
+            <a class="btn btn-secondary btn-lg m-1" href="{% url 'blog:consultas' %}" role="button">Consultas</a>
+            <a class="btn btn-secondary btn-lg m-1" href="{% url 'blog:medicamentos' %}" role="button">Medicamentos</a>
+    </div>
+</div>
+{% endblock content %}

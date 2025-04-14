@@ -1,0 +1,39 @@
+{% extends 'home/base.html' %}
+
+{% block title %}
+Turnos
+{% endblock title %}
+
+{% block content_title %}
+Turnos
+{% endblock content_title %}
+
+{% block content %}
+<a class="btn btn-secondary mb-2" href='{% url 'blog:turnos_create' %}'">Nuevo Turno</a>
+
+<form method="get">
+    {% csrf_token %}
+    <input type="text" name="search" placeholder="Buscar por especialidad" class="form-control mb-2"
+        value="{{ request.GET.search }}" type="submit">
+</form>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-light">
+        <tr>
+            <th>Fecha</th>
+            <th>Especialidad</th>
+            <th>Medico Asignado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for turno in turnos %}
+        <tr>
+            <td>{{ turno.fecha }}</td>
+            <td>{{ turno.especialidad }}</td>
+            <td>{{ turno.medico_asignado }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

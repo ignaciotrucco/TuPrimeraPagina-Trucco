@@ -1,0 +1,40 @@
+{% extends 'home/base.html' %}
+
+{% block title %}
+Pacientes
+{% endblock title %}
+
+{% block content_title %}
+Pacientes
+{% endblock content_title %}
+
+{% block content %}
+
+<a class="btn btn-secondary mb-2" href='{% url 'blog:pacientes_create' %}'">Nuevo Paciente</a>
+
+<form method="get">
+    {% csrf_token %}
+    <input type="text" name="search" placeholder="Buscar por nombre" class="form-control mb-2"
+        value="{{ request.GET.search }}" type="submit">
+</form>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-light">
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Obra Social</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for paciente in pacientes %}
+        <tr>
+            <td>{{ paciente.nombre }}</td>
+            <td>{{ paciente.edad }}</td>
+            <td>{{ paciente.obra_social }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

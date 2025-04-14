@@ -1,0 +1,40 @@
+{% extends 'home/base.html' %}
+
+{% block title %}
+Medicamentos
+{% endblock title %}
+
+{% block content_title %}
+Medicamentos
+{% endblock content_title %}
+
+{% block content %}
+
+<a class="btn btn-secondary mb-2" href='{% url 'blog:medicamentos_create' %}'">Nuevo Medicamento</a>
+
+<form method="get">
+    {% csrf_token %}
+    <input type="text" name="search" placeholder="Buscar por nombre" class="form-control mb-2"
+        value="{{ request.GET.search }}" type="submit">
+</form>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-light">
+        <tr>
+            <th>Nombre</th>
+            <th>Laboratorio</th>
+            <th>Uso Recomendado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for medicamento in medicamentos %}
+        <tr>
+            <td>{{ medicamento.nombre }}</td>
+            <td>{{ medicamento.laboratorio }}</td>
+            <td>{{ medicamento.uso_recomendado }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
